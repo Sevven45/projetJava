@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 f?vr. 2019 11:18:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Hibernate.Image" table="IMAGE" schema="P1811876" optimistic-lock="version">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="urlImg" type="string">
+            <column name="URL_IMG" length="20" />
+        </property>
+        <property name="idMessage" type="string">
+            <column name="ID_MESSAGE" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>
