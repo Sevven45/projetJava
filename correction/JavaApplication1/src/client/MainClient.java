@@ -8,6 +8,7 @@ package client;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import UI.UI;
 
 /**
  *
@@ -19,6 +20,7 @@ public static void main(String[] args) {
 try {
 
 Client c = new Client("127.0.0.1", 46);
+UI.Appli();
 
 } catch (UnknownHostException e) {
 e.printStackTrace();
