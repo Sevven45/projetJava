@@ -5,6 +5,7 @@
  */
 package UI;
 
+import client.Client;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,10 +16,14 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
+import client.ClientSend.*;
+import javafx.application.Platform;
+import javafx.stage.WindowEvent;
 
 
 
     public class UI extends Application {
+        Client c;
 
         public static void Appli() {
             Application.launch();
@@ -26,6 +31,8 @@ import javafx.scene.paint.Color;
 
         @Override
         public void start(Stage primaryStage) {
+            String M;
+          
             BorderPane root = new BorderPane();
             Scene scene = new Scene(root, 550, 350, Color.WHITE);
 
@@ -51,6 +58,16 @@ import javafx.scene.paint.Color;
                 @Override
                 public void handle(ActionEvent event) {
                     System.out.println(textArea.getText());
+                    String M = textArea.getText();
+                }
+            });
+            
+            
+            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
                 }
             });
 
