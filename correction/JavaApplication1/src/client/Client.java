@@ -6,6 +6,7 @@
 
 package client;
 
+import UI.UI;
 import common.Message;
 import java.io.*;
 import java.net.Socket;
