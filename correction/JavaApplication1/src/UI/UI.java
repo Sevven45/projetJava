@@ -23,11 +23,13 @@ import javafx.stage.WindowEvent;
 
 
     public class UI extends Application {
-        Client c;
+        static String Nom;
 
-        public static void Appli() {
+        public static void Appli(String nom) {
+            UI.Nom = nom;
             Application.launch();
         }
+        
 
         @Override
         public void start(Stage primaryStage) {
@@ -43,7 +45,7 @@ import javafx.stage.WindowEvent;
 
 
 
-            Label fNameLbl = new Label("Pseudo");
+            Label fNameLbl = new Label(Nom);
             TextArea textArea = new TextArea();
             double height = 80; //making a variable called height with a value 400
             double width = 400;  //making a variable called height with a value 300
@@ -59,6 +61,7 @@ import javafx.stage.WindowEvent;
                 public void handle(ActionEvent event) {
                     System.out.println(textArea.getText());
                     String M = textArea.getText();
+                    client.ClientSend.setM(M);
                 }
             });
             
