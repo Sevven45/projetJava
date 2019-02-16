@@ -21,34 +21,35 @@ public class ClientSend implements Runnable {
 
     private Socket socket;
     private ObjectOutputStream out;
+    private static String m;
 
     public ClientSend(Socket soc, ObjectOutputStream o) {
         socket = soc;
         out = o;
     }
-
+    
+    public static void setM(String M){
+        ClientSend.m =M;
+    }
+    
     public void run() {
         try {
-
-            Scanner sc = new Scanner(System.in);
-            while (true) {
-                System.out.print("Votre message >> ");
-                String m = sc.nextLine();
+            Calendar cal = Calendar.getInstance();
+            Calendar myCal = Calendar.getInstance();
+            myCal.set(Calendar.YEAR, 2019);
+            myCal.set(Calendar.MONTH, 01);
+            myCal.set(Calendar.DAY_OF_MONTH, 01);
+            Date theDate = myCal.getTime(); 
+            Message mess = new Message("client",m, theDate);
                 
-                Calendar cal = Calendar.getInstance();
-                Calendar myCal = Calendar.getInstance();
-                myCal.set(Calendar.YEAR, 2019);
-                myCal.set(Calendar.MONTH, 01);
-                myCal.set(Calendar.DAY_OF_MONTH, 01);
-                Date theDate = myCal.getTime(); 
-                Message mess = new Message("client",m, theDate);
-                
-                out.writeObject(mess);
-                out.flush();
-            }
+            out.writeObject(mess);
+            out.flush();
+            
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
+    
+    
 
 }
