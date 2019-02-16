@@ -6,8 +6,6 @@
 
 package server;
 
-import java.io.IOException;
-
 /**
  *
  * @author myriam.fort

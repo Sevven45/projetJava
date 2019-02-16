@@ -9,10 +9,6 @@ import Gestion_BDD.Gestion_BDD;
 import Hibernate.Message;
 import java.io.*;
 import java.net.Socket;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

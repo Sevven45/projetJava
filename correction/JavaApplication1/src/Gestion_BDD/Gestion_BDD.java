@@ -7,8 +7,7 @@ package Gestion_BDD;
 
 import Hibernate.Util;
 import Hibernate.Message;
-import java.math.BigDecimal;
-import java.util.Date;
+
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
