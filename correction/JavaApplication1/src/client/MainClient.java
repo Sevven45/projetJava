@@ -15,12 +15,18 @@ import UI.UI;
  * @author myriam.fort
  */
 public class MainClient {
+    public static String pseudo = "Defaults";
 
 public static void main(String[] args) {
 try {
 
+    if (args.length> 0 ){
+        pseudo = args[0];
+    }
+
 Client c = new Client("127.0.0.1", 46);
-UI.Appli();
+
+UI.Appli(pseudo);
 
 } catch (UnknownHostException e) {
 e.printStackTrace();
