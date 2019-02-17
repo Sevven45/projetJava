@@ -33,6 +33,7 @@ public class ClientReceive implements Runnable {
             
             while (isActive) {
                 Message mess = (Message) in.readObject();
+                
                  
             }
             client.disconnectedServer();

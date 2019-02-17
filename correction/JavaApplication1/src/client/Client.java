@@ -22,7 +22,7 @@ private int port;
 private Socket socket;
 private ObjectInputStream in;
 private ObjectOutputStream out;
-String pseudo;
+String pseudo = "Defaults";
        
 public Client(String ad, int p, String pseudo) throws IOException
 {
