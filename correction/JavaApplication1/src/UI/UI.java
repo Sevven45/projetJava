@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Hibernate.Message;
 import client.Client;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
 import client.ClientSend.*;
+import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.stage.WindowEvent;
 
@@ -24,16 +26,25 @@ import javafx.stage.WindowEvent;
 
     public class UI extends Application {
         static String Nom;
+        static Client c;
+        static ArrayList<Message> feed= new ArrayList<Message>();
+        
+        ListView<Message> listView = new ListView<Message>();
 
-        public static void Appli(String nom) {
+        public static void Appli(String nom,Client c) {
             UI.Nom = nom;
+            UI.c = c;
             Application.launch();
         }
+
+   
         
 
         @Override
         public void start(Stage primaryStage) {
             String M;
+           
+            initListView(listView);
           
             BorderPane root = new BorderPane();
             Scene scene = new Scene(root, 550, 350, Color.WHITE);
@@ -59,9 +70,8 @@ import javafx.stage.WindowEvent;
 
                 @Override
                 public void handle(ActionEvent event) {
-                    System.out.println(textArea.getText());
                     String M = textArea.getText();
-                    client.ClientSend.setM(M);
+                    c.sendMsg(M);
                 }
             });
             
@@ -74,29 +84,43 @@ import javafx.stage.WindowEvent;
                 }
             });
 
-            // First name label
+            // Pseudo label
             GridPane.setHalignment(fNameLbl, HPos.RIGHT);
             gridpane.add(fNameLbl, 0, 0);
 
-
-
-            // First name field
+            // Text field
             GridPane.setHalignment(textArea, HPos.LEFT);
             gridpane.add(textArea, 1, 0);
 
-            // Save button
+            // Send button
             GridPane.setHalignment(sendButt, HPos.RIGHT);
             gridpane.add(sendButt, 2, 0);
 
             //scrollpane
-            ScrollPane s1 = new ScrollPane();
-            s1.setPrefSize(400, 250);
-            gridpane.add(s1, 1, 3);
+            
+            gridpane.add(listView, 1, 3);
+            
+            //listview
+            
 
 
             root.setCenter(gridpane);
             primaryStage.setScene(scene);
             primaryStage.show();
         }
-
+        
+        public static void initMessList(Message mess){
+            feed.add(mess);
+            System.out.println(feed);
+        }
+        public void initListView( ListView listView){
+            for (Message Mess : feed) {
+                listView.getItems().add(Mess.getContenu()+"---"+Mess.getEmetteur());
+            }
+        }
+        
+         public void addMessList(Hibernate.Message mess){
+            feed.add(mess);
+            initListView(listView);
+        }
     }
