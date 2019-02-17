@@ -46,9 +46,14 @@ public class Gestion_BDD {
     }
     
     public static void insertMessage(Message m){
-        
+        System.out.println("Function : InsertMessage");
         Session session = Util.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
+        
+        String hql = "INSERT INTO MESSAGE("+m.getContenu()+","+m.getEmetteur()+","+ m.getDateEnvoi()+")";
+        Query query = session.createQuery(hql);
+        int result = query.executeUpdate();
+        System.out.println("Rows affected: "+result);
         
         session.save(m);
         session.flush();
