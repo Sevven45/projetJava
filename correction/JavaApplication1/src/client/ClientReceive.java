@@ -6,6 +6,7 @@
 package client;
 
 import Hibernate.Message;
+import UI.UI;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -27,19 +28,12 @@ public class ClientReceive implements Runnable {
 
     public void run() {
         try {
-            
             in = new ObjectInputStream(socket.getInputStream());
-
             boolean isActive = true;
+            
             while (isActive) {
                 Message mess = (Message) in.readObject();
-                
-                if (mess != null) {
-                    System.out.println("\nMessage reçu : " + mess.getEmetteur());
-                    
-                } else {
-                    isActive = false;
-                }
+                 
             }
             client.disconnectedServer();
         } catch (Exception ex) {

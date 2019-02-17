@@ -7,6 +7,7 @@ package server;
 
 import Gestion_BDD.Gestion_BDD;
 import Hibernate.Message;
+import UI.UI;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,24 +37,14 @@ public class Server {
     }
 
     public void addClient(ConnectedClient newClient) throws IOException {
-        for (ConnectedClient client : clients) {
-             Calendar cal = Calendar.getInstance();
-                Calendar myCal = Calendar.getInstance();
-                myCal.set(Calendar.YEAR, 2019);
-                myCal.set(Calendar.MONTH, 01);
-                myCal.set(Calendar.DAY_OF_MONTH, 01);
-                Date theDate = myCal.getTime();
-            client.sendMessage(new Message("Le client " + newClient.getId() + " vient de se connecter","server", theDate));
-        }
         this.clients.add(newClient);
-
     }
     
     public void broadcastMessage() throws IOException {
         Message leMessage = Gestion_BDD.queryLastMessag();
         for (ConnectedClient client : clients)
         {
-            client.sendMessage(leMessage);
+            UI.initMessList(leMessage);
         }
     }
     
@@ -63,7 +54,7 @@ public class Server {
             
             for(Message leMessage : lesMessages)
             {
-                client.sendMessage(leMessage);
+                UI.initMessList(leMessage);
             }
         }
     }

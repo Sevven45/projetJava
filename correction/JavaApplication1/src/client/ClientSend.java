@@ -21,16 +21,17 @@ public class ClientSend implements Runnable {
 
     private Socket socket;
     private ObjectOutputStream out;
-    private static String m;
+    private String pseudo;
+    private String m;
 
-    public ClientSend(Socket soc, ObjectOutputStream o) {
+    public ClientSend(Socket soc, ObjectOutputStream o, String pseudo, String m){
         socket = soc;
         out = o;
+        this.pseudo = pseudo;
+        this.m = m;
     }
     
-    public static void setM(String M){
-        ClientSend.m =M;
-    }
+   
     
     public void run() {
         try {
@@ -40,8 +41,7 @@ public class ClientSend implements Runnable {
             myCal.set(Calendar.MONTH, 01);
             myCal.set(Calendar.DAY_OF_MONTH, 01);
             Date theDate = myCal.getTime(); 
-            Message mess = new Message("client",m, theDate);
-                
+            Message mess = new Message(pseudo,m, theDate);
             out.writeObject(mess);
             out.flush();
             

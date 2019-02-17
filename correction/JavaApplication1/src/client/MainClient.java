@@ -16,23 +16,23 @@ import UI.UI;
  */
 public class MainClient {
     public static String pseudo = "Defaults";
+    UI ui;
 
 public static void main(String[] args) {
-try {
+    try {
 
-    if (args.length> 0 ){
-        pseudo = args[0];
+        if (args.length> 0 ){
+            pseudo = args[0];
+        }
+
+    Client c = new Client("127.0.0.1", 46, pseudo);
+    UI.Appli(c.getPseudo(), c);
+
+    } catch (UnknownHostException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
     }
-
-Client c = new Client("127.0.0.1", 46);
-
-UI.Appli(pseudo);
-
-} catch (UnknownHostException e) {
-e.printStackTrace();
-} catch (IOException e) {
-e.printStackTrace();
-}
 }
 private static void printUsage() {
 System.out.println("java client.MainClient <address> <port>");
