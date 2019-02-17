@@ -7,7 +7,8 @@
 package client;
 
 import UI.UI;
-import common.Message;
+import Hibernate.Message;
+import static client.MainClient.pseudo;
 import java.io.*;
 import java.net.Socket;
 
@@ -21,29 +22,37 @@ private int port;
 private Socket socket;
 private ObjectInputStream in;
 private ObjectOutputStream out;
+String pseudo;
        
-public Client(String ad, int p) throws IOException
+public Client(String ad, int p, String pseudo) throws IOException
 {
     adresse=ad;
     port=p;
     socket=new Socket(ad, p);
     out = new ObjectOutputStream(socket.getOutputStream());
-    Thread threadClientS =new Thread(new ClientSend(socket, out));
-    threadClientS.start();
+    
     Thread threadClientR =new Thread(new ClientReceive(this, socket));
     threadClientR.start();
-    
 }
-public void messageReceived(Message mess)
-{
+
+public void sendMsg(String m){
+    Thread threadClientS =new Thread(new ClientSend(socket, out, pseudo, m));
+    threadClientS.start();
+}
+
+public void messageReceived(Message mess){
     System.out.println(mess.toString());
 }
-public void disconnectedServer() throws IOException
-{
+
+public void disconnectedServer() throws IOException{
     out.close();
     socket.close();
     if (in!=null)
         in.close();
     System.exit(0);
+}
+
+public String getPseudo(){
+    return this.pseudo;
 }
 }
