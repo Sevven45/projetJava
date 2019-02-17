@@ -41,7 +41,7 @@ public class ClientSend implements Runnable {
             myCal.set(Calendar.MONTH, 01);
             myCal.set(Calendar.DAY_OF_MONTH, 01);
             Date theDate = myCal.getTime(); 
-            Message mess = new Message(pseudo,m, theDate);
+            Message mess = new Message(m,pseudo, theDate);
             out.writeObject(mess);
             out.flush();
             
