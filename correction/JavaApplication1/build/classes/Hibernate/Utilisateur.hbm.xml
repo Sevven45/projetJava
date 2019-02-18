@@ -8,10 +8,10 @@
             <column name="ID" precision="22" scale="0" />
             <generator class="assigned" />
         </id>
-        <property name="identifient" type="string">
+        <property name="identifient" type="java.lang.String">
             <column name="IDENTIFIENT" length="20" />
         </property>
-        <property name="motDePasse" type="string">
+        <property name="motDePasse" type="java.lang.String">
             <column name="MOT_DE_PASSE" length="20" />
         </property>
     </class>

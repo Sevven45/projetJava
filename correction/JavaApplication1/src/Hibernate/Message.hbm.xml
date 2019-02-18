@@ -8,10 +8,10 @@
             <column name="ID" precision="22" scale="0" />
             <generator class="assigned" />
         </id>
-        <property name="contenu" type="string">
+        <property name="contenu" type="java.lang.String">
             <column name="CONTENU" length="200" />
         </property>
-        <property name="emetteur" type="string">
+        <property name="emetteur" type="java.lang.String">
             <column name="EMETTEUR" length="20" />
         </property>
         <property name="dateEnvoi" type="date">

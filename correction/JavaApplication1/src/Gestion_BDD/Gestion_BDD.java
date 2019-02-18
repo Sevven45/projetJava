@@ -7,6 +7,8 @@ package Gestion_BDD;
 
 import Hibernate.Util;
 import Hibernate.Message;
+import java.util.Calendar;
+import java.util.Date;
 
 import java.util.List;
 import org.hibernate.Query;
@@ -47,17 +49,17 @@ public class Gestion_BDD {
     
     public static void insertMessage(Message m){
         System.out.println("Function : InsertMessage");
+
+        if(m.getContenu() != null){
+            Calendar cal = Calendar.getInstance();
+            Date now = cal.getTime();
+            System.out.println(now.toString()+" Message :"+ m.getContenu());
+
         Session session = Util.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        
-        String hql = "INSERT INTO MESSAGE(contenu,emetteur,date_envoi) values ('"+ m.getContenu() +"','"+ m.getEmetteur()+"',SYSDATE)";
-        Query query = session.createSQLQuery(hql);
-        int result = query.executeUpdate();
-        System.out.println("Rows affected: "+result);
-        
         session.save(m);
-        session.flush();
         tx.commit();
         session.close();
+        }
     }
 }

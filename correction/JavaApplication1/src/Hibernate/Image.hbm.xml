@@ -8,10 +8,10 @@
             <column name="ID" precision="22" scale="0" />
             <generator class="assigned" />
         </id>
-        <property name="urlImg" type="string">
+        <property name="urlImg" type="java.lang.String">
             <column name="URL_IMG" length="20" />
         </property>
-        <property name="idMessage" type="string">
+        <property name="idMessage" type="java.lang.String">
             <column name="ID_MESSAGE" length="20" />
         </property>
     </class>

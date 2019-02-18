@@ -5,9 +5,12 @@
         <group>
             <file>file:/C:/Users/Charles/Documents/NetBeansProjects/projetJava/correction/JavaApplication1/src/server/ConnectedClient.java</file>
             <file>file:/C:/Users/Charles/Documents/NetBeansProjects/projetJava/correction/JavaApplication1/src/UI/UI.java</file>
+            <file>file:/C:/Users/Charles/Documents/NetBeansProjects/projetJava/correction/JavaApplication1/src/server/Connection.java</file>
+            <file>file:/C:/Users/Charles/Documents/NetBeansProjects/projetJava/correction/JavaApplication1/src/client/ClientSend.java</file>
+            <file>file:/C:/Users/Charles/Documents/NetBeansProjects/projetJava/correction/JavaApplication1/src/Hibernate/Message.java</file>
             <file>file:/C:/Users/Charles/Documents/NetBeansProjects/projetJava/correction/JavaApplication1/src/server/Server.java</file>
-            <file>file:/C:/Users/Charles/Documents/NetBeansProjects/projetJava/correction/JavaApplication1/src/Hibernate/Utilisateur.java</file>
             <file>file:/C:/Users/Charles/Documents/NetBeansProjects/projetJava/correction/JavaApplication1/src/Gestion_BDD/Gestion_BDD.java</file>
+            <file>file:/C:/Users/Charles/Documents/NetBeansProjects/projetJava/correction/JavaApplication1/src/client/Client.java</file>
         </group>
     </open-files>
 </project-private>
