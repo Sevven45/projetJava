@@ -44,6 +44,7 @@ public class ClientSend implements Runnable {
             Message mess = new Message(m,pseudo, theDate);
             out.writeObject(mess);
             out.flush();
+            System.out.println("Message envoyer");
             
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

@@ -33,8 +33,8 @@ public class ClientReceive implements Runnable {
             
             while (isActive) {
                 Message mess = (Message) in.readObject();
-                
-                 
+                System.out.println("Client recois");
+                client.messageReceived(mess);
             }
             client.disconnectedServer();
         } catch (Exception ex) {

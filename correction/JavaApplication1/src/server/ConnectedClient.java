@@ -38,8 +38,11 @@ public class ConnectedClient implements Runnable {
             boolean isActive = true;
             while (isActive) {
                 Message mess = (Message) in.readObject();
+                System.out.println("Message Recu!");
+                System.out.print(mess.getContenu());
                 if (mess != null) {
-                    Gestion_BDD.insertMessage(mess);
+                    //Gestion_BDD.insertMessage(mess);
+                    System.out.println("Essai d'envoie a tous!!");
                     server.broadcastAllMessages();
                     
                 } else {
@@ -54,6 +57,7 @@ public class ConnectedClient implements Runnable {
     }
 
     public void sendMessage(Message mess) throws IOException {
+        System.out.println("SendMessage");
         this.out.writeObject(mess);
         this.out.flush();
     }

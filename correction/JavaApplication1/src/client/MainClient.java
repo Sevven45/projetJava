@@ -9,6 +9,7 @@ package client;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import UI.UI;
+import javafx.application.Application;
 
 /**
  *
@@ -16,7 +17,7 @@ import UI.UI;
  */
 public class MainClient {
     public static String pseudo = "Defaults";
-    UI ui;
+    //UI ui;
 
 public static void main(String[] args) {
     try {
@@ -26,7 +27,6 @@ public static void main(String[] args) {
         }
 
     Client c = new Client("127.0.0.1", 46, pseudo);
-    UI.Appli(c.getPseudo(), c);
 
     } catch (UnknownHostException e) {
         e.printStackTrace();

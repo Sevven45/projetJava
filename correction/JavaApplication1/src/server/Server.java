@@ -41,7 +41,8 @@ public class Server {
     }
     
     public void broadcastMessage() throws IOException {
-        Message leMessage = Gestion_BDD.queryLastMessag();
+        //Message leMessage = Gestion_BDD.queryLastMessag();
+        Message leMessage = testMess();
         for (ConnectedClient client : clients)
         {
             UI.initMessList(leMessage);
@@ -49,12 +50,17 @@ public class Server {
     }
     
     public void broadcastAllMessages() throws IOException {
-        List<Message> lesMessages = Gestion_BDD.queryMessage();
+        System.out.println("broadcastAll");
+        //List<Message> lesMessages = Gestion_BDD.queryMessage();
+        List<Message> lesMessages= testListMess();
+        System.out.println(lesMessages);
+
+
         for (ConnectedClient client : clients) {
-            
-            for(Message leMessage : lesMessages)
-            {
-                UI.initMessList(leMessage);
+            System.out.println("Wola");
+            for(Message leMessage : lesMessages){
+                System.out.println("Et un de plus!!!");
+                client.sendMessage(leMessage);
             }
         }
     }
@@ -80,5 +86,30 @@ public class Server {
      */
     public int getPort() {
         return port;
+    }
+    
+    
+    public List<Message> testListMess(){
+           List<Message> lesMessages = new ArrayList<Message>();
+         Calendar myCal = Calendar.getInstance();
+                myCal.set(Calendar.YEAR, 2019);
+                myCal.set(Calendar.MONTH, 01);
+                myCal.set(Calendar.DAY_OF_MONTH, 01);
+                Date theDate = myCal.getTime();
+        Message mess01 = new Message("Message numero 30015","Jacques Berger",theDate);
+        Message mess02 = new Message("JE suis un hardcore gamer","Francis Port",theDate);
+        lesMessages.add(mess01);
+        lesMessages.add(mess02);
+        return lesMessages;
+    }
+    
+    public Message testMess(){
+         Calendar myCal = Calendar.getInstance();
+                myCal.set(Calendar.YEAR, 2019);
+                myCal.set(Calendar.MONTH, 01);
+                myCal.set(Calendar.DAY_OF_MONTH, 01);
+                Date theDate = myCal.getTime();
+        Message mess = new Message("Message numero 30015","Jacques Berger",theDate);
+        return mess;
     }
 }

@@ -30,9 +30,10 @@ import javafx.stage.WindowEvent;
         static String Nom;
         static Client c;
         static ArrayList<Message> feed= new ArrayList<Message>();
-        
-        ListView<Message> listView = new ListView<Message>();
+        ArrayList<Message> feed2= new ArrayList<Message>();
+        ListView<String> listView;
 
+        
         public static void Appli(String nom,Client c) {
             UI.Nom = nom;
             UI.c = c;
@@ -45,6 +46,7 @@ import javafx.stage.WindowEvent;
         @Override
         public void start(Stage primaryStage) {
             String M;
+            listView = new ListView<String>();
            
             initListView(listView);
             Calendar cal = Calendar.getInstance();
@@ -119,14 +121,19 @@ import javafx.stage.WindowEvent;
         public static void initMessList(Message mess){
             feed.add(mess);
         }
-        public static void initListView( ListView listView){
-            for (Message Mess : feed) {
+        public void initListView( ListView listView){
+            for (Message Mess : feed2) {
                 listView.getItems().add(Mess.getContenu()+"---"+Mess.getEmetteur());
             }
+            System.out.println("c le refresh?");
+            listView.refresh();
         }
         
-         public void addMessList(Message mess){
-            feed.add(mess);
-            initListView(listView);
+        public void addMessList(Message mess){
+            System.out.println("addMessList");
+            feed2.add(mess);
+            System.out.println(feed2);
+            listView.getItems().add(mess.getContenu()+"---"+mess.getEmetteur());
+            listView.refresh();
         }
     }

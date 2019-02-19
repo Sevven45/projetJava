@@ -11,6 +11,7 @@ import Hibernate.Message;
 import static client.MainClient.pseudo;
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,16 +24,19 @@ private Socket socket;
 private ObjectInputStream in;
 private ObjectOutputStream out;
 String pseudo = "Defaults";
+private ArrayList<Message> feed2= new ArrayList<Message>();
+UI ui;
+
        
-public Client(String ad, int p, String pseudo) throws IOException
-{
+public Client(String ad, int p, String pseudo) throws IOException{
     adresse=ad;
     port=p;
     socket=new Socket(ad, p);
     out = new ObjectOutputStream(socket.getOutputStream());
-    
+    ui = new UI(); 
     Thread threadClientR =new Thread(new ClientReceive(this, socket));
     threadClientR.start();
+    ui.Appli(pseudo, this);
 }
 
 public void sendMsg(String m){
@@ -41,7 +45,8 @@ public void sendMsg(String m){
 }
 
 public void messageReceived(Message mess){
-    System.out.println(mess.toString());
+    feed2.add(mess);
+    ui.addMessList(mess);
 }
 
 public void disconnectedServer() throws IOException{
